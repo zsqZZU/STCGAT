@@ -10,7 +10,7 @@ import shutil
 import argparse
 import configparser
 from model.STCGAT import make_model
-from lib.utils import load_graphdata_channel1, compute_val_loss_mstgcn, predict_and_save_results
+from lib.utils import load_graphdata_channel1, compute_val_loss, predict_and_save_results
 from tensorboardX import SummaryWriter
 from lib.metrics import masked_mae, masked_mse
 
@@ -157,9 +157,9 @@ def train_main():
         params_filename = os.path.join(params_path, 'epoch_%s.params' % epoch)
 
         if masked_flag:
-            val_loss = compute_val_loss_mstgcn(net, val_loader, criterion_masked, masked_flag,missing_value,sw, epoch)
+            val_loss = compute_val_loss(net, val_loader, criterion_masked, masked_flag,missing_value,sw, epoch)
         else:
-            val_loss = compute_val_loss_mstgcn(net, val_loader, criterion, masked_flag, missing_value, sw, epoch)
+            val_loss = compute_val_loss(net, val_loader, criterion, masked_flag, missing_value, sw, epoch)
 
 
         if val_loss < best_val_loss:
