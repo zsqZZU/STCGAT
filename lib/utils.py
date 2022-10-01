@@ -207,7 +207,7 @@ def load_graphdata_channel1(graph_signal_matrix_filename, num_of_hours, num_of_d
     return train_loader, train_target_tensor, val_loader, val_target_tensor, test_loader, test_target_tensor, mean, std
 
 
-def compute_val_loss_mstgcn(net, val_loader, criterion,  masked_flag,missing_value,sw, epoch, limit=None):
+def compute_val_loss(net, val_loader, criterion,  masked_flag,missing_value,sw, epoch, limit=None):
     '''
     for rnn, compute mean loss on validation set
     :param net: model
